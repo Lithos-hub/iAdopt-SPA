@@ -1,9 +1,9 @@
 <template>
 	<v-navigation-drawer color="black" class="fixed">
 		<div class="sticky top-0 bg-secondary-2 z-20">
-			<v-btn block variant="text" color="primary" prepend-icon="mdi-plus" height="75"
-				>Nuevo cuestionario</v-btn
-			>
+			<v-btn block variant="text" color="primary" prepend-icon="mdi-plus" height="75">{{
+				$t('COMMON.NEW_FORM')
+			}}</v-btn>
 		</div>
 
 		<v-list density="compact" nav>
@@ -29,5 +29,3 @@ const reportsItems = [
 	},
 ];
 </script>
-
-<style scoped></style>

@@ -18,16 +18,16 @@
 					cover />
 
 				<v-card-item class="m-5 text-primary-3">
-					<div>
-						<div class="text-overline mb-1">
-							{{ specie }}
+					<div class="flex flex-col gap-2">
+						<div class="text-overline mb-1 flex gap-2.5 items-center">
+							{{ $t('EVALUATOR.SPECIE') }}: <SpecieChip :specie="specie" />
 						</div>
-						<div class="text-h6 mb-1">
+						<div class="text-h6 mb-1 text-white">
 							{{ title }}
 						</div>
 						<div class="text-caption flex flex-col">
-							<strong>Nombre: {{ full_name }}</strong>
-							<strong>Edad: {{ age }}</strong>
+							<strong>{{ $t('EVALUATOR.ADOPTER_NAME') }}: {{ full_name }}</strong>
+							<strong>{{ $t('EVALUATOR.ADOPTER_AGE') }}: {{ age }}</strong>
 						</div>
 					</div>
 				</v-card-item>
@@ -41,9 +41,9 @@
 				</v-card-actions>
 				<v-card-actions class="flex justify-end mb-5">
 					<v-btn variant="text" color="blue" @click="showReportIsOpened = true">
-						Ver informe
+						{{ $t('EVALUATOR.SHOW') }}
 					</v-btn>
-					<v-btn variant="text" color="red"> Eliminar </v-btn>
+					<v-btn variant="text" color="red"> {{ $t('EVALUATOR.DELETE') }} </v-btn>
 				</v-card-actions>
 			</v-card>
 		</div>
@@ -86,7 +86,7 @@ const reportsItem: Report[] = [
 	{
 		title: 'informe 4',
 		evaluation: 4,
-		specie: 'cat',
+		specie: 'dog',
 		image:
 			'https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 		full_name: 'Jane Doe',

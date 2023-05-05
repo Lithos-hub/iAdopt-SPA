@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideMenu: typeof import('./src/components/SideMenu.vue')['default']
+    SpecieChip: typeof import('./src/components/SpecieChip.vue')['default']
     TechStack: typeof import('./src/components/TechStack.vue')['default']
     VApp: typeof import('vuetify/components')['VApp']
     VAppBar: typeof import('vuetify/components')['VAppBar']
@@ -24,8 +25,10 @@ declare module '@vue/runtime-core' {
     VCardItem: typeof import('vuetify/components')['VCardItem']
     VCardText: typeof import('vuetify/components')['VCardText']
     VCardTitle: typeof import('vuetify/components')['VCardTitle']
+    VContainer: typeof import('vuetify/components')['VContainer']
     VDialog: typeof import('vuetify/components')['VDialog']
     VDivider: typeof import('vuetify/components')['VDivider']
+    VForm: typeof import('vuetify/components')['VForm']
     VIcon: typeof import('vuetify/components')['VIcon']
     VImg: typeof import('vuetify/components')['VImg']
     VLayout: typeof import('vuetify/components')['VLayout']
@@ -34,5 +37,6 @@ declare module '@vue/runtime-core' {
     VMain: typeof import('vuetify/components')['VMain']
     VNavigationDrawer: typeof import('vuetify/components')['VNavigationDrawer']
     VSpacer: typeof import('vuetify/components')['VSpacer']
+    VTextField: typeof import('vuetify/components')['VTextField']
   }
 }

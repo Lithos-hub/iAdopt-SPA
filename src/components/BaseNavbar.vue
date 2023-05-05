@@ -11,10 +11,10 @@
 
 		<language-selector />
 		<router-link to="/app/generator">
-			<v-btn> Generador </v-btn>
+			<v-btn> {{ $t('COMMON.GENERATOR') }} </v-btn>
 		</router-link>
 		<router-link to="/app/evaluator">
-			<v-btn> Evaluador </v-btn>
+			<v-btn> {{ $t('COMMON.EVALUATOR') }} </v-btn>
 		</router-link>
 	</v-app-bar>
 </template>
