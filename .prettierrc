@@ -1,4 +1,6 @@
 {
 	"useTabs": true,
-	"singleQuote": true
+	"singleQuote": true,
+	"bracketSameLine": true,
+	"printWidth": 100
 }
