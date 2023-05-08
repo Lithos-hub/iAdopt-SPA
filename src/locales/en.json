@@ -1,0 +1,38 @@
+{
+	"COMMON": {
+		"GENERATOR": "Generator",
+		"MY_REPORTS": "My reports",
+		"NEW_FORM": "New form",
+		"CLOSE": "Close",
+		"DOG": "Dog",
+		"CAT": "Cat"
+	},
+	"ACCESS": {
+		"LOGIN_TITLE": "Access with my account",
+		"SIGNUP_TITLE": "Create an account",
+		"RECOVER_TITLE": "Recover password",
+		"WANT_SIGNUP": "I want to create an account",
+		"WANT_LOGIN": "I want to access with my account",
+		"LOGIN": "Login",
+		"SIGNUP": "Sign up",
+		"EMAIL": "Email",
+		"PASSWORD": "Password",
+		"REPASSWORD": "Repeat the password",
+		"RECOVER": "I don't remember my password"
+	},
+	"EVALUATOR": {
+		"SPECIE": "Specie",
+		"ADOPTER_NAME": "Adopter name",
+		"ADOPTER_AGE": "Adopter age",
+		"SHOW": "Show report",
+		"DELETE": "Delete",
+		"RESULT": "Evaluation result"
+	},
+	"ERRORS": {
+		"EMAIL_FORMAT": "The email format is incorrect",
+		"EMAIL_REQUIRED": "The email is required",
+		"PASS_MATCH": "The passwords don't mach",
+		"PASS_REQUIRED": "The password is required",
+		"PASS_CONTAIN": "The password must contain at least: 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 symbol"
+	}
+}

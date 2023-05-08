@@ -1,0 +1,39 @@
+{
+	"COMMON": {
+		"GENERATOR": "Generador",
+		"MY_REPORTS": "Mis informes",
+		"NEW_FORM": "Nuevo formulario",
+		"CLOSE": "Cerrar",
+		"DOG": "Perro",
+		"CAT": "Gato"
+	},
+	"ACCESS": {
+		"LOGIN_TITLE": "Acceder con mi cuenta",
+		"SIGNUP_TITLE": "Crear una cuenta",
+		"RECOVER_TITLE": "Recuperar contraseña",
+		"WANT_SIGNUP": "Quiero crear una cuenta",
+		"WANT_LOGIN": "Quiero acceder con mi cuenta",
+		"SUBMIT_LOGIN": "Acceder",
+		"SUBMIT_SIGNUP": "Registrarme",
+		"SUBMIT_RECOVER": "Recuperar contraseña",
+		"EMAIL": "Correo electrónico",
+		"PASSWORD": "Contraseña",
+		"REPASSWORD": "Repite la contraseña",
+		"RECOVER": "No recuerdo mi contraseña"
+	},
+	"EVALUATOR": {
+		"SPECIE": "Especie",
+		"ADOPTER_NAME": "Nombre del adoptante",
+		"ADOPTER_AGE": "Edad del adoptante",
+		"SHOW": "Mostrar informe",
+		"DELETE": "Eliminar",
+		"RESULT": "Resultado de evaluación"
+	},
+	"ERRORS": {
+		"EMAIL_FORMAT": "El formato del email es incorrecto",
+		"EMAIL_REQUIRED": "El email es obligatorio",
+		"PASS_MATCH": "Las contraseñas no coinciden",
+		"PASS_REQUIRED": "La contraseña es obligatoria",
+		"PASS_CONTAIN": "La contraseña debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 símbolo"
+	}
+}

@@ -1,23 +1,6 @@
-# Vite 4, Vue 3, Vuetify 3, TypeScript template
+# iAdopt
 
-Technologies stack and features:
-
-- Vite 4
-- Vue 3
-- Vuetify 3
-- TypeScript
-- ESLint
-- Prettier
-- Tailwind CSS
-- SASS
-- Vitest
-- Testing Library
-- Husky
-- Pinia
-- Vue Query
-- Vue Router
-- Auto imports: Components
-- Auto imports: Vitest, Pinia, Vue and Vue Router APIs
+App to generate animals adoption forms and adoption evaluations using OpenAI GPT.
 
 ## Recommended IDE Setup
 

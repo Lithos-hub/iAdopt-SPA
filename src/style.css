@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+.v-main {
+	@apply bg-gradient-to-br from-blue-900/10 to-secondary-1/10;
+}
