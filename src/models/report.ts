@@ -6,3 +6,9 @@ export interface Report {
 	full_name: string;
 	age: number;
 }
+
+export interface GeneratedReport {
+	_id: string;
+	title: string;
+	isFavourite: boolean;
+}

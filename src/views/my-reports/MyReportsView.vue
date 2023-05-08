@@ -1,5 +1,20 @@
 <template>
 	<BaseDialog :open="showReportIsOpened" @close="showReportIsOpened = false" />
+	<div class="mx-auto max-w-[90rem] mb-10">
+		<v-text-field
+			v-model="searchQuery"
+			density="compact"
+			variant="filled"
+			label="Buscar informe"
+			color="cyan"
+			append-icon="mdi-magnify"
+			hide-details
+			@click:append="onSearch">
+			<template #label>
+				<span> Buscar <strong>informe</strong> <v-icon icon="mdi-file-find"></v-icon> </span>
+			</template>
+		</v-text-field>
+	</div>
 	<div class="grid grid-cols-3 gap-10 mx-auto max-w-[90rem]">
 		<div
 			v-for="({ title, specie, full_name, age, image, evaluation }, i) in reportsItem"
@@ -20,14 +35,14 @@
 				<v-card-item class="m-5 text-primary-3">
 					<div class="flex flex-col gap-2">
 						<div class="text-overline mb-1 flex gap-2.5 items-center">
-							{{ $t('EVALUATOR.SPECIE') }}: <SpecieChip :specie="specie" />
+							{{ $t('MY_REPORTS.SPECIE') }}: <SpecieChip :specie="specie" />
 						</div>
 						<div class="text-h6 mb-1 text-white">
 							{{ title }}
 						</div>
 						<div class="text-caption flex flex-col">
-							<strong>{{ $t('EVALUATOR.ADOPTER_NAME') }}: {{ full_name }}</strong>
-							<strong>{{ $t('EVALUATOR.ADOPTER_AGE') }}: {{ age }}</strong>
+							<strong>{{ $t('MY_REPORTS.ADOPTER_NAME') }}: {{ full_name }}</strong>
+							<strong>{{ $t('MY_REPORTS.ADOPTER_AGE') }}: {{ age }}</strong>
 						</div>
 					</div>
 				</v-card-item>
@@ -41,9 +56,9 @@
 				</v-card-actions>
 				<v-card-actions class="flex justify-end mb-5">
 					<v-btn variant="text" color="blue" @click="showReportIsOpened = true">
-						{{ $t('EVALUATOR.SHOW') }}
+						{{ $t('MY_REPORTS.SHOW') }}
 					</v-btn>
-					<v-btn variant="text" color="red"> {{ $t('EVALUATOR.DELETE') }} </v-btn>
+					<v-btn variant="text" color="red"> {{ $t('MY_REPORTS.DELETE') }} </v-btn>
 				</v-card-actions>
 			</v-card>
 		</div>
@@ -54,6 +69,7 @@
 import { Report } from '@/models/report';
 
 const showReportIsOpened = ref(false);
+const searchQuery = ref('');
 
 const reportsItem: Report[] = [
 	{
@@ -99,5 +115,16 @@ const getEvaluationColor = (result: number) => {
 	if (result <= 3) return 'text-red-500';
 	if (result <= 6) return 'text-amber-500';
 	return 'text-green-500';
+};
+
+const timeout = ref<ReturnType<typeof setTimeout>>(setTimeout(() => null, 0));
+
+watch(searchQuery, () => {
+	if (timeout.value) clearTimeout(timeout.value);
+	timeout.value = setTimeout(() => onSearch(), 1000);
+});
+
+const onSearch = () => {
+	console.log('filter results');
 };
 </script>

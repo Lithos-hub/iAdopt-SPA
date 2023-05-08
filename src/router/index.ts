@@ -57,11 +57,11 @@ const routes: RouteRecordRaw[] = [
 				],
 			},
 			{
-				path: '/app/evaluator',
-				name: 'Evaluator',
+				path: '/app/my-reports',
+				name: 'My reports',
 				beforeEnter: requiresAuth,
 				component: () =>
-					import(/* webpackChunkName: "home" */ '@/views/evaluator/EvaluatorView.vue'),
+					import(/* webpackChunkName: "home" */ '@/views/my-reports/MyReportsView.vue'),
 			},
 			{
 				path: '/app/about',

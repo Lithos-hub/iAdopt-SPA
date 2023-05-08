@@ -9,7 +9,10 @@
 		</div>
 
 		<v-list density="compact" nav>
-			<router-link v-for="({ title, id }, i) of reportsItems" :key="i" :to="`/app/generator/${id}`">
+			<router-link
+				v-for="({ title, _id }, i) of reportsItems"
+				:key="i"
+				:to="`/app/generator/${_id}`">
 				<v-list-item prepend-icon="mdi-file-check" :title="title" :value="title" />
 			</router-link>
 		</v-list>
@@ -17,14 +20,16 @@
 </template>
 
 <script setup lang="ts">
-const reportsItems = [
+import { GeneratedReport } from '@/models';
+
+const reportsItems: GeneratedReport[] = [
 	{
-		id: 110,
+		_id: '110',
 		title: 'Título 1',
 		isFavourite: false,
 	},
 	{
-		id: 111,
+		_id: '111',
 		title: 'Título 2',
 		isFavourite: true,
 	},
