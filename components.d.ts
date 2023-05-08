@@ -11,7 +11,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseDialog: typeof import('./src/components/BaseDialog.vue')['default']
     BaseNavbar: typeof import('./src/components/BaseNavbar.vue')['default']
+    GeneratorMenu: typeof import('./src/components/GeneratorMenu.vue')['default']
     LanguageSelector: typeof import('./src/components/LanguageSelector.vue')['default']
+    LightDarkSelector: typeof import('./src/components/LightDarkSelector.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideMenu: typeof import('./src/components/SideMenu.vue')['default']
@@ -36,7 +38,11 @@ declare module '@vue/runtime-core' {
     VListItem: typeof import('vuetify/components')['VListItem']
     VMain: typeof import('vuetify/components')['VMain']
     VNavigationDrawer: typeof import('vuetify/components')['VNavigationDrawer']
+    VRadio: typeof import('vuetify/components')['VRadio']
+    VRadioGroup: typeof import('vuetify/components')['VRadioGroup']
     VSpacer: typeof import('vuetify/components')['VSpacer']
+    VTextarea: typeof import('vuetify/components')['VTextarea']
     VTextField: typeof import('vuetify/components')['VTextField']
+    VThemeProvider: typeof import('vuetify/components')['VThemeProvider']
   }
 }

@@ -1,7 +1,7 @@
 {
 	"COMMON": {
 		"GENERATOR": "Generator",
-		"EVALUATOR": "Evaluator",
+		"MY_REPORTS": "My reports",
 		"NEW_FORM": "New form",
 		"CLOSE": "Close",
 		"DOG": "Dog",
@@ -10,13 +10,15 @@
 	"ACCESS": {
 		"LOGIN_TITLE": "Access with my account",
 		"SIGNUP_TITLE": "Create an account",
+		"RECOVER_TITLE": "Recover password",
 		"WANT_SIGNUP": "I want to create an account",
 		"WANT_LOGIN": "I want to access with my account",
 		"LOGIN": "Login",
 		"SIGNUP": "Sign up",
 		"EMAIL": "Email",
 		"PASSWORD": "Password",
-		"REPASSWORD": "Repeat the password"
+		"REPASSWORD": "Repeat the password",
+		"RECOVER": "I don't remember my password"
 	},
 	"EVALUATOR": {
 		"SPECIE": "Specie",

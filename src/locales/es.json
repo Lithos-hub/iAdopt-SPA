@@ -1,7 +1,7 @@
 {
 	"COMMON": {
 		"GENERATOR": "Generador",
-		"EVALUATOR": "Evaluador",
+		"MY_REPORTS": "Mis informes",
 		"NEW_FORM": "Nuevo formulario",
 		"CLOSE": "Cerrar",
 		"DOG": "Perro",
@@ -10,13 +10,16 @@
 	"ACCESS": {
 		"LOGIN_TITLE": "Acceder con mi cuenta",
 		"SIGNUP_TITLE": "Crear una cuenta",
+		"RECOVER_TITLE": "Recuperar contraseña",
 		"WANT_SIGNUP": "Quiero crear una cuenta",
 		"WANT_LOGIN": "Quiero acceder con mi cuenta",
-		"LOGIN": "Acceder",
-		"SIGNUP": "Registrarme",
+		"SUBMIT_LOGIN": "Acceder",
+		"SUBMIT_SIGNUP": "Registrarme",
+		"SUBMIT_RECOVER": "Recuperar contraseña",
 		"EMAIL": "Correo electrónico",
 		"PASSWORD": "Contraseña",
-		"REPASSWORD": "Repite la contraseña"
+		"REPASSWORD": "Repite la contraseña",
+		"RECOVER": "No recuerdo mi contraseña"
 	},
 	"EVALUATOR": {
 		"SPECIE": "Especie",

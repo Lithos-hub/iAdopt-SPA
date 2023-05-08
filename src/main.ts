@@ -1,14 +1,12 @@
-import { createApp } from 'vue';
-import './style.css';
 import App from './App.vue';
 import router from './router';
+import { createApp } from 'vue';
+
+import './style.css';
 
 import { VueQueryPlugin } from 'vue-query';
 
 import { MotionPlugin } from '@vueuse/motion';
-
-import { createPinia } from 'pinia';
-const pinia = createPinia();
 
 // Vuetify
 
@@ -19,12 +17,30 @@ import * as directives from 'vuetify/directives';
 import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
 import i18n from './plugins/i18n';
 
-const myCustomLightTheme: ThemeDefinition = {
+// import { useTailwindMode } from '@/composables/useTailwindMode';
+// localStorage.mode = 'dark';
+// const { toggleMode } = useTailwindMode();
+// toggleMode();
+
+const lightTheme: ThemeDefinition = {
+	dark: false,
+	colors: {
+		primary: '#5465ff',
+		secondary: '#788bff',
+		black: '#0d1b2a',
+		background: '#FFFFFF10',
+		surface: '#FFFFFF10',
+	},
+};
+
+const darkTheme: ThemeDefinition = {
 	dark: true,
 	colors: {
 		primary: '#5465ff',
 		secondary: '#788bff',
 		black: '#0d1b2a',
+		background: '#10101010',
+		surface: '#0d1b2a',
 	},
 };
 
@@ -32,16 +48,16 @@ const vuetify = createVuetify({
 	components,
 	directives,
 	theme: {
-		defaultTheme: 'myCustomLightTheme',
+		defaultTheme: 'darkTheme',
 		themes: {
-			myCustomLightTheme,
+			darkTheme,
+			lightTheme,
 		},
 	},
 });
 
 createApp(App)
 	.use(VueQueryPlugin)
-	.use(pinia)
 	.use(MotionPlugin)
 	.use(vuetify)
 	.use(router)
