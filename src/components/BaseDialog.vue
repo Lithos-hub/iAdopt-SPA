@@ -2,7 +2,7 @@
 	<v-dialog v-model="dialog" width="800">
 		<v-card>
 			<v-card-title class="sticky top-0 bg-secondary-1 p-5">
-				<span class="text-h5">{{ $t('EVALUATOR.RESULT') }}</span>
+				<span class="text-h5">{{ $t('MY_REPORTS.RESULT') }}</span>
 			</v-card-title>
 			<v-card-text class="h-[500px] overflow-y-auto">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam, possimus harum ipsa

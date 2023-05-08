@@ -22,7 +22,7 @@
 					<v-btn> {{ $t('COMMON.GENERATOR') }} </v-btn>
 				</router-link>
 				<router-link
-					to="/app/evaluator"
+					to="/app/my-reports"
 					active-class="border-b-2 border-cyan-500"
 					class="min-w-[120px]">
 					<v-btn> {{ $t('COMMON.MY_REPORTS') }} </v-btn>
