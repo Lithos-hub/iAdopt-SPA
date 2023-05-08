@@ -2,7 +2,7 @@
 	<v-navigation-drawer class="fixed">
 		<div class="sticky top-0 z-20">
 			<router-link to="/app/generator/new">
-				<v-btn block variant="filled" color="primary" prepend-icon="mdi-plus" height="75">{{
+				<v-btn block variant="tonal" color="primary" prepend-icon="mdi-plus" height="75">{{
 					$t('COMMON.NEW_FORM')
 				}}</v-btn>
 			</router-link>
