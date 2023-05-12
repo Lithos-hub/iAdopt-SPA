@@ -22,15 +22,16 @@
 	},
 	"dependencies": {
 		"@vueuse/motion": "^2.0.0-beta.12",
-		"pinia": "^2.0.33",
+		"axios": "^1.4.0",
+		"pinia": "^2.0.36",
 		"vue": "^3.2.45",
 		"vue-i18n": "^9.2.2",
-		"vue-query": "^1.26.0",
 		"vue-router": "^4.1.6",
 		"vuetify": "^3.1.8"
 	},
 	"devDependencies": {
 		"@mdi/font": "^7.1.96",
+		"@pinia/testing": "^0.1.0",
 		"@testing-library/vue": "^6.6.1",
 		"@typescript-eslint/eslint-plugin": "^5.54.1",
 		"@typescript-eslint/parser": "^5.54.1",

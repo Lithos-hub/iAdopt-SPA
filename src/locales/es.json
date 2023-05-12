@@ -2,6 +2,7 @@
 	"COMMON": {
 		"GENERATOR": "Generador",
 		"MY_REPORTS": "Mis informes",
+		"LOGOUT": "Cerrar sesión",
 		"NEW_FORM": "Nuevo formulario",
 		"CLOSE": "Cerrar",
 		"DOG": "Perro",
@@ -29,11 +30,28 @@
 		"DELETE": "Eliminar",
 		"RESULT": "Resultado de evaluación"
 	},
-	"ERRORS": {
+	"FORM_ERROR": {
 		"EMAIL_FORMAT": "El formato del email es incorrecto",
 		"EMAIL_REQUIRED": "El email es obligatorio",
 		"PASS_MATCH": "Las contraseñas no coinciden",
 		"PASS_REQUIRED": "La contraseña es obligatoria",
 		"PASS_CONTAIN": "La contraseña debe contener al menos: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 símbolo"
+	},
+	"SUCCESS": {
+		"LOGIN": "Has accedido correctamente",
+		"JOIN": "Te has registrado correctamente",
+		"RECOVER": "Se ha enviado un email a tu correo electrónico para recuperar la contraseña",
+		"SURVEY_GENERATED": "Se ha generado el cuestionario correctamente"
+	},
+	"BACKEND_ERROR": {
+		"LOGIN": {
+			"INCORRECT_DATA": "El email o la contraseña son incorrectos"
+		},
+		"JOIN": {
+			"USER_EXISTS": "Ese email ya está registrado"
+		},
+		"SESSION": {
+			"NOT_FOUND": "La sesión no existe"
+		}
 	}
 }

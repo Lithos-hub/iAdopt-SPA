@@ -3,6 +3,7 @@
 		"GENERATOR": "Generator",
 		"MY_REPORTS": "My reports",
 		"NEW_FORM": "New form",
+		"LOGOUT": "Logout",
 		"CLOSE": "Close",
 		"DOG": "Dog",
 		"CAT": "Cat"
@@ -28,11 +29,28 @@
 		"DELETE": "Delete",
 		"RESULT": "Evaluation result"
 	},
-	"ERRORS": {
+	"FORM_ERROR": {
 		"EMAIL_FORMAT": "The email format is incorrect",
 		"EMAIL_REQUIRED": "The email is required",
 		"PASS_MATCH": "The passwords don't mach",
 		"PASS_REQUIRED": "The password is required",
 		"PASS_CONTAIN": "The password must contain at least: 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 symbol"
+	},
+	"SUCCESS": {
+		"LOGIN": "You have logged in successfully",
+		"JOIN": "You have registered successfully",
+		"RECOVER": "The password has been sent to your email",
+		"SURVEY_GENERATED": "The survey has been generated successfully"
+	},
+	"BACKEND_ERROR": {
+		"LOGIN": {
+			"INCORRECT_DATA": "The email or password are incorrect"
+		},
+		"JOIN": {
+			"USER_EXISTS": "That email is already registered"
+		},
+		"SESSION": {
+			"NOT_FOUND": "The session doesn't exist"
+		}
 	}
 }

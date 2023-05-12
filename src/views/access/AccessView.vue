@@ -4,32 +4,21 @@
 			class="fixed top-0 w-full h-screen bg-gradient-to-tr from-primary-1 to-transparent mix-blend-multiply bg-opacity-50 z-20" />
 		<v-img src="/img/access-background.jpg" cover class="fixed top-0 h-full w-full z-10" />
 	</div>
-	<!-- <v-img src="/img/access-background.jpg" cover class="absolute top-0 h-screen w-full z-0" /> -->
 	<div class="flex w-full justify-between z-50 p-5">
 		<h1 class="text-white z-50 text-4xl">iAdopt</h1>
-
-		<language-selector />
+		<language-selector class="text-secondary-1" />
 	</div>
 
 	<!-- CARD -->
 	<div
-		class="flex flex-col justify-center items-center md:items-end md:px-[10rem] md:pb-[10rem] h-screen w-screen">
+		class="flex flex-col justify-center items-center md:items-end md:px-[10rem] md:pb-[10rem] w-screen max-h-[calc(100vh-80px)] overflow-hidden">
 		<div
-			class="bg-gradient-to-tl from-white/20 to-white backdrop-blur rounded-xl shadow-xl w-[30rem] max-w-[90vw]">
+			class="bg-white/40 backdrop-blur rounded-xl shadow-xl w-full max-w-[90vw] md:w-[30rem] mt-[80px]">
 			<div class="p-5 bg-primary-1 text-white rounded-t-xl text-xl">
 				{{ modeTitle }}
 			</div>
 			<div class="p-5 flex h-[60vh] flex-col justify-between">
-				<v-form
-					v-model="valid"
-					class="flex flex-col gap-5"
-					@submit="
-						accessMode === 'register'
-							? submitRegister
-							: accessMode === 'recover'
-							? submitRecover
-							: submitLogin
-					">
+				<v-form v-model="valid" class="flex flex-col gap-5" @submit.prevent="onSubmit">
 					<v-text-field
 						v-model="email"
 						:label="$t('ACCESS.EMAIL')"
@@ -39,7 +28,7 @@
 						class="text-primary"
 						:rules="emailRules"
 						required />
-					<div v-if="accessMode !== 'recover'" :class="!isRegistering && 'mb-10'">
+					<div v-if="accessType !== 'RECOVER'" :class="!isRegistering && 'mb-10'">
 						<v-text-field
 							v-model="password"
 							:label="$t('ACCESS.PASSWORD')"
@@ -55,7 +44,7 @@
 						<small
 							v-if="!isRegistering"
 							class="underline cursor-pointer text-secondary-2 hover:text-white mt-5 self-start"
-							@click="changeMode('recover')"
+							@click="changeMode('RECOVER')"
 							>{{ t('ACCESS.RECOVER') }}</small
 						>
 					</div>
@@ -73,13 +62,13 @@
 						required
 						@click:append-inner="isShownPassword = !isShownPassword" />
 
-					<v-btn color="primary" type="submit">
+					<v-btn color="primary" type="submit" :loading="loading" :disabled="loading">
 						{{ buttonTitle }}
 					</v-btn>
 				</v-form>
 				<small
 					class="underline cursor-pointer text-secondary-2 hover:text-white mt-5 self-start"
-					@click="changeMode(isRegistering ? 'login' : 'register')"
+					@click="changeMode(isRegistering ? 'LOGIN' : 'JOIN')"
 					>{{ toggleText }}</small
 				>
 			</div>
@@ -89,104 +78,91 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-const valid = ref(false);
+import { authHanlder } from '@/services';
+import { useSnackbarStore } from '@/store/snackbar';
+
+type Mode = 'LOGIN' | 'JOIN' | 'RECOVER';
 
 const { t } = useI18n();
 
-type Mode = 'login' | 'register' | 'recover';
-
-const accessMode = ref<Mode>('login');
-
+const accessType = ref<Mode>('LOGIN');
 const email = ref('');
 const password = ref('');
 const repassword = ref('');
 const isShownPassword = ref(false);
+const valid = ref(false);
+const loading = ref(false);
+
+const { showSnackbar } = useSnackbarStore();
+
+const router = useRouter();
 
 const modeTitle = computed(() => {
-	switch (accessMode.value) {
-		case 'login':
+	switch (accessType.value) {
+		case 'LOGIN':
 			return t('ACCESS.LOGIN_TITLE');
-		case 'register':
+		case 'JOIN':
 			return t('ACCESS.SIGNUP_TITLE');
-		case 'recover':
+		case 'RECOVER':
 			return t('ACCESS.RECOVER_TITLE');
 	}
 });
 const buttonTitle = computed(() => {
-	switch (accessMode.value) {
-		case 'login':
+	switch (accessType.value) {
+		case 'LOGIN':
 			return t('ACCESS.SUBMIT_LOGIN');
-		case 'register':
+		case 'JOIN':
 			return t('ACCESS.SUBMIT_SIGNUP');
-		case 'recover':
+		case 'RECOVER':
 			return t('ACCESS.SUBMIT_RECOVER');
 	}
 });
 const toggleText = computed(() => {
-	switch (accessMode.value) {
-		case 'login':
+	switch (accessType.value) {
+		case 'LOGIN':
 			return t('ACCESS.WANT_SIGNUP');
-		case 'register':
+		case 'JOIN':
 			return t('ACCESS.WANT_LOGIN');
-		case 'recover':
+		case 'RECOVER':
 			return t('ACCESS.WANT_LOGIN');
 	}
 });
 
-const isRegistering = computed(() => accessMode.value === 'register');
+const isRegistering = computed(() => accessType.value === 'JOIN');
 
 const emailRules = [
-	(v: string) => {
-		if (v) return true;
-
-		return t('ERRORS.EMAIL_REQUIRED');
-	},
-	(v: string) => {
-		if (/.+@.+\..+/.test(v)) return true;
-
-		return t('ERRORS.EMAIL_FORMAT');
-	},
+	(v: string) => !!v || t('FORM_ERROR.EMAIL_REQUIRED'),
+	(v: string) => /.+@.+\..+/.test(v) || t('FORM_ERROR.EMAIL_FORMAT'),
 ];
 
 const passRules = [
-	(v: string) => {
-		if (v) return true;
-
-		return t('ERRORS.PASS_REQUIRED');
-	},
-	(v: string) => {
-		if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(v)) return true;
-
-		return t('ERRORS.PASS_CONTAIN');
-	},
+	(v: string) => !!v || t('FORM_ERROR.PASS_REQUIRED'),
+	(v: string) =>
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(v) ||
+		t('FORM_ERROR.PASS_CONTAIN'),
 ];
 
 const repassRules = [
-	(v: string) => {
-		if (v) return true;
-
-		return t('ERRORS.PASS_REQUIRED');
-	},
-	(v: string) => {
-		if (v === password.value) return true;
-
-		return t('ERRORS.PASS_MATCH');
-	},
+	(v: string) => !!v || t('FORM_ERROR.PASS_REQUIRED'),
+	(v: string) => v === password.value || t('FORM_ERROR.PASS_MATCH'),
 ];
 
-const changeMode = (mode: Mode) => (accessMode.value = mode);
+const changeMode = (mode: Mode) => (accessType.value = mode);
 
-const submitRegister = () => {
-	console.log('Register');
-};
+const onSubmit = async () => {
+	if (!valid.value) return;
 
-const submitLogin = () => {
-	console.log('Login');
-};
-
-const submitRecover = () => {
-	console.log('Recover');
+	try {
+		loading.value = true;
+		const data = {
+			email: email.value,
+			password: password.value,
+		};
+		await authHanlder(data, `/auth/${accessType.value}`, 'post');
+		showSnackbar('success', t(`SUCCESS.${accessType.value.toUpperCase()}`));
+		router.push('/app');
+	} catch (error) {
+		loading.value = false;
+	}
 };
 </script>
-
-<style scoped></style>

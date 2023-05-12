@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<GeneratorMenu />
+		<SurveysMenu />
 		<router-view />
 	</div>
 </template>

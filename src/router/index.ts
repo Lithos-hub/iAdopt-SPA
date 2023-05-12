@@ -6,11 +6,20 @@ import {
 	createWebHistory,
 } from 'vue-router';
 
-const requiresAuth = async (to: RouteLocation, from: RouteLocation, next: NavigationGuardNext) => {
-	const isLogged = true;
-	if (!isLogged) {
+const requiresAuth = async (_: RouteLocation, __: RouteLocation, next: NavigationGuardNext) => {
+	const token = localStorage.getItem('token');
+	if (!token) {
 		console.log('Access denied');
 		next('/');
+	} else {
+		next();
+	}
+};
+
+const redirectIfAuth = async (_: RouteLocation, __: RouteLocation, next: NavigationGuardNext) => {
+	const token = localStorage.getItem('token');
+	if (token) {
+		next('/app');
 	} else {
 		next();
 	}
@@ -21,11 +30,13 @@ const routes: RouteRecordRaw[] = [
 		path: '/',
 		name: 'access',
 		component: () => import(/* webpackChunkName: "home" */ '@/views/access/AccessView.vue'),
+		beforeEnter: redirectIfAuth,
 	},
 	{
-		path: '/form/:id',
-		name: 'Form view',
-		component: () => import(/* webpackChunkName: "home" */ '@/views/form/FormView.vue'),
+		path: '/adoption-form/:id',
+		name: 'Adoption Form view',
+		component: () =>
+			import(/* webpackChunkName: "home" */ '@/views/adoptionForm/AdoptionFormView.vue'),
 	},
 	{
 		path: '/app',
@@ -38,8 +49,7 @@ const routes: RouteRecordRaw[] = [
 				path: '/app/generator',
 				name: 'Generator',
 				beforeEnter: requiresAuth,
-				component: () =>
-					import(/* webpackChunkName: "home" */ '@/views/generator/GeneratorView.vue'),
+				component: () => import(/* webpackChunkName: "home" */ '@/views/generator/_Index.vue'),
 				redirect: '/app/generator/new',
 				children: [
 					{
@@ -49,10 +59,11 @@ const routes: RouteRecordRaw[] = [
 							import(/* webpackChunkName: "home" */ '@/views/generator/CreateFormView.vue'),
 					},
 					{
-						path: '/app/generator/:id',
-						name: 'Detail generation',
+						path: '/app/surveys/:id',
+						name: 'Survey Details',
+						beforeEnter: requiresAuth,
 						component: () =>
-							import(/* webpackChunkName: "home" */ '@/views/generator/ReviewFormView.vue'),
+							import(/* webpackChunkName: "home" */ '@/views/survey/SurveyDetails.vue'),
 					},
 				],
 			},

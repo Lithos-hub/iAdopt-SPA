@@ -1,10 +1,9 @@
 import App from './App.vue';
 import router from './router';
 import { createApp } from 'vue';
+import pinia from './store';
 
 import './style.css';
-
-import { VueQueryPlugin } from 'vue-query';
 
 import { MotionPlugin } from '@vueuse/motion';
 
@@ -17,15 +16,10 @@ import * as directives from 'vuetify/directives';
 import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
 import i18n from './plugins/i18n';
 
-// import { useTailwindMode } from '@/composables/useTailwindMode';
-// localStorage.mode = 'dark';
-// const { toggleMode } = useTailwindMode();
-// toggleMode();
-
 const lightTheme: ThemeDefinition = {
 	dark: false,
 	colors: {
-		primary: '#5465ff',
+		primary: '#1282a2',
 		secondary: '#788bff',
 		black: '#0d1b2a',
 		background: '#FFFFFF10',
@@ -36,7 +30,7 @@ const lightTheme: ThemeDefinition = {
 const darkTheme: ThemeDefinition = {
 	dark: true,
 	colors: {
-		primary: '#5465ff',
+		primary: '#147df5',
 		secondary: '#788bff',
 		black: '#0d1b2a',
 		background: '#10101010',
@@ -56,10 +50,4 @@ const vuetify = createVuetify({
 	},
 });
 
-createApp(App)
-	.use(VueQueryPlugin)
-	.use(MotionPlugin)
-	.use(vuetify)
-	.use(router)
-	.use(i18n)
-	.mount('#app');
+createApp(App).use(MotionPlugin).use(vuetify).use(router).use(i18n).use(pinia).mount('#app');

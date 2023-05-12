@@ -1,14 +1,9 @@
 export interface Report {
 	title: string;
-	evaluation: number;
+	evaluation_score: number;
+	evaluation_results: string;
 	specie: 'dog' | 'cat' | string; // Maybe would change in the future
 	image: string;
-	full_name: string;
-	age: number;
-}
-
-export interface GeneratedReport {
-	_id: string;
-	title: string;
-	isFavourite: boolean;
+	adopter_name: string;
+	adopter_age: number;
 }
