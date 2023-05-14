@@ -1,6 +1,6 @@
 export interface Form {
 	adopter_name: string;
-	adopter_age: number | null;
+	adopter_age: number;
 	adopter_email: string;
 	adopter_phone?: string;
 	adopter_region: string;
@@ -11,8 +11,8 @@ export interface Form {
 	animal_name: string;
 	animal_region: string;
 	animal_breed: string;
-	animal_age: number | null;
+	animal_age: string;
 	animal_extra_info: string;
 	animal_image?: File | null;
-	animal_link: string;
+	animal_link?: string | null;
 }

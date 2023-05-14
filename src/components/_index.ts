@@ -5,4 +5,4 @@ export * from './LanguageSelector.vue';
 export * from './LightDarkSelector.vue';
 export * from './SpecieChip.vue';
 export * from './SurveysMenu.vue';
-export * from './index';
+export * from './_index';

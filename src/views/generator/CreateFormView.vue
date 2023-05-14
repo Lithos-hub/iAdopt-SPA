@@ -1,7 +1,15 @@
 <template>
-	<v-card class="backdrop-blur-md p-10 rounded-2xl">
-		<v-form ref="form" v-model="valid" class="grid grid-cols-2 gap-5" @submit.prevent="onSubmit">
-			<strong class="col-span-2 text-primary">Datos de contacto</strong>
+	<v-card class="backdrop-blur-md rounded-2xl p-10 mr-10">
+		<div v-if="isLoading" class="flex flex-col gap-5 justify-center items-center">
+			<LoadingSpinner />
+		</div>
+		<v-form
+			v-else
+			ref="form"
+			v-model="valid"
+			class="grid grid-cols-2 gap-5"
+			@submit.prevent="onSubmit">
+			<strong class="col-span-2 text-primary">Datos de contacto del adoptante</strong>
 			<v-text-field
 				v-model="formModel.adopter_email"
 				label="Email del adoptante"
@@ -83,6 +91,12 @@
 				color="cyan"
 				:rules="requiredRule" />
 			<v-text-field
+				v-model="formModel.animal_name"
+				label="Nombre del animal"
+				required
+				color="cyan"
+				:rules="requiredRule" />
+			<v-text-field
 				v-model="formModel.animal_region"
 				label="Región o ciudad del animal"
 				required
@@ -96,20 +110,20 @@
 				:rules="requiredRule" />
 			<v-text-field
 				v-model="formModel.animal_age"
-				type="number"
-				label="Edad del animal"
+				label="Edad del animal (Ejemplo: 2 años y 3 meses)"
 				required
 				color="cyan"
 				:rules="requiredRule" />
+			<div />
 			<v-text-field
 				v-model="formModel.animal_link"
-				label="Enlace a la publicación del animal"
+				label="Enlace a la publicación del animal (opcional)"
 				append-icon="mdi-link-variant"
 				color="cyan"
 				:rules="requiredRule" />
 			<v-file-input
 				v-model="formModel.animal_image"
-				label="Foto del animal"
+				label="Foto del animal (opcional)"
 				append-icon="mdi-image"
 				:prepend-icon="null"
 				accept="image/*"></v-file-input>
@@ -118,7 +132,13 @@
 				label="Información adicional del animal"
 				color="cyan"
 				class="col-span-2" />
-
+			<v-divider class="col-span-2" />
+			<p class="text-cyan-500 col-span-2 flex items-center gap-5">
+				<v-icon icon="mdi-alert-circle-outline" color="cyan" />
+				Atención. Estos datos se utilizarán para generar el formulario de adopción. Los datos de
+				contacto del adoptante se guardarán en nuestra base de datos para que puedas contactarlo en
+				caso de que sea necesario a través de la sección "MIS INFORMES".
+			</p>
 			<v-btn
 				color="green"
 				variant="tonal"
@@ -133,11 +153,15 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 import { Form } from '@/models';
 import { chatGPTHandler, surveyHandler } from '@/services';
+
 import { useSnackbarStore } from '@/store/snackbar';
 import { useUserStore } from '@/store/user';
-import { useI18n } from 'vue-i18n';
+
+import LoadingSpinner from './components/LoadingSpinner.vue';
 
 const { showSnackbar } = useSnackbarStore();
 const { getUserData } = useUserStore();
@@ -150,8 +174,9 @@ const requiredRule = [
 	},
 ];
 
-const isLoading = ref(false);
 const form = ref();
+
+const isLoading = ref(false);
 const valid = ref(false);
 const formModel = ref<Form>({
 	adopter_name: 'Juan',
@@ -166,11 +191,11 @@ const formModel = ref<Form>({
 	animal_name: 'Dobby',
 	animal_region: 'Zamora',
 	animal_breed: 'Pastor Alemán',
-	animal_age: 1,
+	animal_age: '3 meses',
 	animal_extra_info:
 		'Cachorro nervioso, tiene miedo de otros perros y le cuesta acercarse a personas',
 	animal_image: null,
-	animal_link: 'test',
+	animal_link: null,
 });
 
 const onSubmit = async () => {
@@ -179,9 +204,32 @@ const onSubmit = async () => {
 		await form.value.validate();
 		const { data } = await chatGPTHandler(formModel.value);
 
-		const processedData = data.split('* ').filter((el: string) => el !== '');
+		const processedData = data
+			.split('*')
+			.map((item: string) => item.trim())
+			.filter((el: string) => el !== '');
+
 		await surveyHandler({
-			data: processedData,
+			data: {
+				adopter_info: {
+					name: formModel.value.adopter_name,
+					age: formModel.value.adopter_age,
+					email: formModel.value.adopter_email,
+					phone: formModel.value.adopter_phone,
+					region: formModel.value.adopter_region,
+					city: formModel.value.adopter_city,
+				},
+				animal_info: {
+					specie: formModel.value.animal_specie,
+					name: formModel.value.animal_name,
+					region: formModel.value.animal_region,
+					breed: formModel.value.animal_breed,
+					age: formModel.value.animal_age,
+					image: formModel.value.animal_image,
+					link: formModel.value.animal_link,
+				},
+				questions: processedData,
+			},
 			url: `/surveys`,
 			method: 'post',
 		});

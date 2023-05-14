@@ -14,6 +14,7 @@ import { useUserStore } from '@/store/user';
 const { getUserData } = useUserStore();
 
 const router = useRouter();
+
 onMounted(async () => {
 	await authHanlder(undefined, '/auth/session', 'get').catch(() => router.push('/'));
 	await getUserData();

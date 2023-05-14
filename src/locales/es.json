@@ -24,8 +24,8 @@
 	},
 	"MY_REPORTS": {
 		"SPECIE": "Especie",
-		"ADOPTER_NAME": "Nombre del adoptante",
-		"ADOPTER_AGE": "Edad del adoptante",
+		"ADOPTER_NAME_AND_AGE": "Nombre y edad del adoptante",
+		"YEARS": "años",
 		"SHOW": "Mostrar informe",
 		"DELETE": "Eliminar",
 		"RESULT": "Resultado de evaluación"
@@ -41,7 +41,15 @@
 		"LOGIN": "Has accedido correctamente",
 		"JOIN": "Te has registrado correctamente",
 		"RECOVER": "Se ha enviado un email a tu correo electrónico para recuperar la contraseña",
-		"SURVEY_GENERATED": "Se ha generado el cuestionario correctamente"
+		"SURVEY_GENERATED": "Se ha generado el cuestionario correctamente",
+		"SURVEY_EDITED": "Se ha editado el cuestionario correctamente",
+		"SURVEY_DELETED": "Se ha eliminado el cuestionario correctamente",
+		"SURVEY_FAVOURITED": "Se ha añadido el cuestionario a favoritos",
+		"SURVEY_UNFAVOURITED": "Se ha eliminado el cuestionario de favoritos"
+	},
+	"SURVEYS": {
+		"COPIED": "¡Copiado!",
+		"COPY_LINK": "Copiar enlace"
 	},
 	"BACKEND_ERROR": {
 		"LOGIN": {

@@ -7,7 +7,25 @@ export interface Survey {
 }
 
 export interface SurveyDTO {
-	id: number;
+	id?: number;
 	is_favourite?: boolean;
 	title?: string;
+	adopter_info?: {
+		name: string;
+		age: number | null;
+		email: string;
+		phone?: string;
+		region: string;
+		city: string;
+	};
+	animal_info?: {
+		specie: string;
+		name: string;
+		region: string;
+		breed: string;
+		age: string;
+		image?: File | null;
+		link?: string | null;
+	};
+	questions?: string[];
 }

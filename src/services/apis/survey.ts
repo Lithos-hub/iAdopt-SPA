@@ -5,7 +5,7 @@ import { SurveyDTO } from '@/models';
 import { useSnackbarStore } from '@/store/snackbar';
 
 interface SurveyParams {
-	data?: SurveyDTO | [string];
+	data?: SurveyDTO;
 	url: string;
 	method: HTTPMethod;
 }

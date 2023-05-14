@@ -7,3 +7,24 @@ body,
 .v-main {
 	@apply bg-gradient-to-br from-blue-900/10 to-secondary-1/10;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #147df5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #788bff;
+}

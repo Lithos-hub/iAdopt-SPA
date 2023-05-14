@@ -32,6 +32,7 @@ export const useUserStore = defineStore('user', {
 				reports: [],
 				surveys: [],
 			};
+			localStorage.clear();
 		},
 		async getUserData() {
 			this.isLoading = true;

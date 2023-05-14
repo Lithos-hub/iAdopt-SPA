@@ -23,8 +23,8 @@
 	},
 	"MY_REPORTS": {
 		"SPECIE": "Specie",
-		"ADOPTER_NAME": "Adopter name",
-		"ADOPTER_AGE": "Adopter age",
+		"ADOPTER_NAME_AND_AGE": "Name and age of the adopter",
+		"YEARS": "years",
 		"SHOW": "Show report",
 		"DELETE": "Delete",
 		"RESULT": "Evaluation result"
@@ -40,7 +40,15 @@
 		"LOGIN": "You have logged in successfully",
 		"JOIN": "You have registered successfully",
 		"RECOVER": "The password has been sent to your email",
-		"SURVEY_GENERATED": "The survey has been generated successfully"
+		"SURVEY_GENERATED": "The survey has been generated successfully",
+		"SURVEY_EDITED": "The survey has been edited successfully",
+		"SURVEY_DELETED": "The survey has been deleted successfully",
+		"SURVEY_FAVOURITED": "The survey has been added to favourites",
+		"SURVEY_UNFAVOURITED": "The survey has been removed from favourites"
+	},
+	"SURVEYS": {
+		"COPIED": "Copied!",
+		"COPY_LINK": "Copy link"
 	},
 	"BACKEND_ERROR": {
 		"LOGIN": {

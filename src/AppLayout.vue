@@ -1,10 +1,8 @@
 <template>
-	<div>
-		<v-layout>
-			<BaseNavbar />
-			<v-main class="m-20 bg-none">
-				<router-view />
-			</v-main>
-		</v-layout>
-	</div>
+	<v-layout>
+		<BaseNavbar />
+		<v-main class="mx-5 my-5 bg-none">
+			<router-view />
+		</v-main>
+	</v-layout>
 </template>

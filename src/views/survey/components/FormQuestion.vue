@@ -1,13 +1,16 @@
 <template>
 	<div class="flex justify-between gap-5 items-center">
-		<v-text-field
-			v-if="isEditing"
-			v-model="question"
-			hide-details
-			color="cyan"
-			@blur="isEditing = !isEditing" />
-		<div v-else>
-			{{ question }}
+		<div class="flex w-full gap-5 items-center">
+			<p class="text-primary">{{ index + 1 }}</p>
+			<v-text-field
+				v-if="isEditing"
+				v-model="questionModel"
+				hide-details
+				color="cyan"
+				@keyup.enter="onEdit" />
+			<div v-else>
+				{{ question }}
+			</div>
 		</div>
 		<div class="flex gap-5">
 			<v-btn icon variant="text" color="cyan" @click="toggleEditing">
@@ -23,13 +26,19 @@
 <script setup lang="ts">
 interface Props {
 	question: string;
+	index: number;
 }
 const props = defineProps<Props>();
-defineEmits(['delete']);
+const emit = defineEmits(['delete', 'edit']);
 
-const question = ref('');
+const questionModel = ref('');
 const isEditing = ref(false);
 const toggleEditing = () => (isEditing.value = !isEditing.value);
 
-onMounted(() => (question.value = props.question));
+const onEdit = () => {
+	emit('edit', questionModel.value, props.index);
+	toggleEditing();
+};
+
+onMounted(() => (questionModel.value = props.question));
 </script>

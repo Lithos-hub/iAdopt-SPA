@@ -1,3 +1,4 @@
+export * from './apis/adopter';
 export * from './apis/auth';
 export * from './apis/openai';
 export * from './apis/survey';

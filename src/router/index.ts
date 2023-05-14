@@ -29,41 +29,37 @@ const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
 		name: 'access',
-		component: () => import(/* webpackChunkName: "home" */ '@/views/access/AccessView.vue'),
+		component: () => import('@/views/access/AccessView.vue'),
 		beforeEnter: redirectIfAuth,
 	},
 	{
-		path: '/adoption-form/:id',
-		name: 'Adoption Form view',
-		component: () =>
-			import(/* webpackChunkName: "home" */ '@/views/adoptionForm/AdoptionFormView.vue'),
+		path: '/survey/:id',
+		name: 'Survey form view',
+		component: () => import('@/views/survey/SurveyForm.vue'),
 	},
 	{
 		path: '/app',
 		name: 'AppLayout',
-		component: () => import(/* webpackChunkName: "home" */ '@/AppLayout.vue'),
+		component: () => import('@/AppLayout.vue'),
 		beforeEnter: requiresAuth,
-		redirect: '/app/generator',
+		redirect: '/app/generator/new',
 		children: [
 			{
-				path: '/app/generator',
+				path: '/app/generator/new',
 				name: 'Generator',
 				beforeEnter: requiresAuth,
-				component: () => import(/* webpackChunkName: "home" */ '@/views/generator/_Index.vue'),
-				redirect: '/app/generator/new',
+				component: () => import('@/views/generator/_Index.vue'),
 				children: [
 					{
 						path: '/app/generator/new',
 						name: 'New generation',
-						component: () =>
-							import(/* webpackChunkName: "home" */ '@/views/generator/CreateFormView.vue'),
+						component: () => import('@/views/generator/CreateFormView.vue'),
 					},
 					{
 						path: '/app/surveys/:id',
 						name: 'Survey Details',
 						beforeEnter: requiresAuth,
-						component: () =>
-							import(/* webpackChunkName: "home" */ '@/views/survey/SurveyDetails.vue'),
+						component: () => import('@/views/survey/SurveyDetails.vue'),
 					},
 				],
 			},
@@ -71,14 +67,13 @@ const routes: RouteRecordRaw[] = [
 				path: '/app/my-reports',
 				name: 'My reports',
 				beforeEnter: requiresAuth,
-				component: () =>
-					import(/* webpackChunkName: "home" */ '@/views/my-reports/MyReportsView.vue'),
+				component: () => import('@/views/my-reports/MyReportsView.vue'),
 			},
 			{
 				path: '/app/about',
 				name: 'About',
 				beforeEnter: requiresAuth,
-				component: () => import(/* webpackChunkName: "home" */ '@/views/about/AboutView.vue'),
+				component: () => import('@/views/about/AboutView.vue'),
 			},
 		],
 	},

@@ -12,7 +12,7 @@
 			<!-- <light-dark-selector /> -->
 			<div class="flex gap-5">
 				<router-link
-					to="/app/generator"
+					to="/app/generator/new"
 					active-class="border-b-2 border-cyan-500"
 					class="min-w-[120px]">
 					<v-btn> {{ t('COMMON.GENERATOR') }} </v-btn>
@@ -24,7 +24,7 @@
 					<v-btn> {{ t('COMMON.MY_REPORTS') }} </v-btn>
 				</router-link>
 				<language-selector />
-				<v-btn color="red" variant="flat" @click="logout">
+				<v-btn color="red" variant="flat" @click="onLogout">
 					{{ t('COMMON.LOGOUT') }}
 				</v-btn>
 			</div>
@@ -33,14 +33,15 @@
 </template>
 
 <script lang="ts" setup>
+import { useUserStore } from '@/store/user';
 import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
+const { logout } = useUserStore();
 const router = useRouter();
 
-const { t } = useI18n();
-
-const logout = () => {
-	localStorage.removeItem('token');
+const onLogout = () => {
+	logout();
 	router.push('/');
 };
 </script>

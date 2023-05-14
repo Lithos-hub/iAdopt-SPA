@@ -1,6 +1,5 @@
 <template>
-	<div>
-		<SurveysMenu />
-		<router-view />
-	</div>
+	<SurveysMenu />
+
+	<router-view />
 </template>

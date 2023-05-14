@@ -3,8 +3,8 @@
 		class="px-5 rounded-full"
 		:class="
 			specie === 'dog'
-				? 'border border-red-500 bg-red-500/20 text-red-400'
-				: 'border border-cyan-500 bg-cyan-700/20 text-cyan-400'
+				? 'border border-red-500 bg-red-800 text-red-200'
+				: 'border border-cyan-500 bg-cyan-800 text-cyan-200'
 		">
 		{{ translatedSpecie }}
 	</div>

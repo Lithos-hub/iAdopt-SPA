@@ -80,6 +80,7 @@
 import { useI18n } from 'vue-i18n';
 import { authHanlder } from '@/services';
 import { useSnackbarStore } from '@/store/snackbar';
+import { useUserStore } from '@/store/user';
 
 type Mode = 'LOGIN' | 'JOIN' | 'RECOVER';
 
@@ -94,6 +95,7 @@ const valid = ref(false);
 const loading = ref(false);
 
 const { showSnackbar } = useSnackbarStore();
+const { getUserData } = useUserStore();
 
 const router = useRouter();
 
@@ -159,6 +161,7 @@ const onSubmit = async () => {
 			password: password.value,
 		};
 		await authHanlder(data, `/auth/${accessType.value}`, 'post');
+		await getUserData();
 		showSnackbar('success', t(`SUCCESS.${accessType.value.toUpperCase()}`));
 		router.push('/app');
 	} catch (error) {
